@@ -27,6 +27,8 @@ import java.io.File
 import java.io.FileReader
 import java.text.SimpleDateFormat
 
+
+
 /**
  * Fragment that hosts the UI component of the onboarding feature
  */
@@ -152,7 +154,6 @@ class OnboardingFragment : Fragment()
 			}
 			else
 			{
-				downloadProgress.dismiss()
 				Toast.makeText(activity, "There was a problem downloading the content update", Toast.LENGTH_LONG).show()
 			}
 		}

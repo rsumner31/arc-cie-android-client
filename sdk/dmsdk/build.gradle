@@ -1,7 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-//apply plugin: 'org.jetbrains.dokka'
 
 android {
 	compileSdkVersion 25
@@ -13,11 +12,6 @@ android {
 		testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 	}
 }
-
-//dokka {
-//	outputFormat = 'html'
-//	outputDirectory = "$buildDir/javadoc"
-//}
 
 dependencies {
 	implementation fileTree(dir: 'libs', include: ['*.jar'])
