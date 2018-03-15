@@ -35,11 +35,6 @@ class OnboardingFragment : Fragment()
 	private val videoButton by bind<Button>(R.id.video)
 	private val skipButton by bind<Button>(R.id.skip)
 
-	companion object
-	{
-		public const val REQUEST_WATCH_VIDEO = 1;
-	}
-
 	private lateinit var downloadTask: DownloadHelper
 	private val downloadProgress: ProgressDialog by lazy {
 		ProgressDialog(activity).apply {
@@ -60,7 +55,7 @@ class OnboardingFragment : Fragment()
 
 		videoButton.setOnClickListener {
 			AnalyticsHelper.userTapsTutorialVideo()
-			startActivityForResult(Intent(activity, VideoPlayerActivity::class.java), REQUEST_WATCH_VIDEO)
+			startActivity(Intent(activity, VideoPlayerActivity::class.java))
 		}
 	}
 
@@ -181,10 +176,5 @@ class OnboardingFragment : Fragment()
 
 		startActivity(Intent(activity, MainActivity::class.java))
 		activity.finish()
-	}
-
-	override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?)
-	{
-		if (requestCode == REQUEST_WATCH_VIDEO) skipButton.performClick()
 	}
 }
