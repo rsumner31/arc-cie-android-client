@@ -4,7 +4,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.cube.arc.R
-import com.cube.lib.helper.AnalyticsHelper
 import com.cube.lib.util.bind
 import com.google.android.exoplayer2.*
 import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory
@@ -30,15 +29,25 @@ class VideoPlayerActivity : AppCompatActivity()
 	{
 		super.onCreate(savedInstanceState)
 
-		AnalyticsHelper.userWatchTutorialVideo()
 		setContentView(R.layout.video_player_view)
-
 		val videoTrackSelectionFactory = AdaptiveTrackSelection.Factory(null)
 		val trackSelector = DefaultTrackSelector(videoTrackSelectionFactory)
-		val dataSourceFactory: DataSource.Factory = Factory { AssetDataSource(this@VideoPlayerActivity) }
-		val videoSource = ExtractorMediaSource(Uri.parse("assets:///onboarding_video.mp4"), dataSourceFactory, DefaultExtractorsFactory(), null, null)
 
 		player = ExoPlayerFactory.newSimpleInstance(this, trackSelector)
+		videoPlayer.requestFocus()
+		videoPlayer.useController = false
+		videoPlayer.player = player
+
+		val dataSourceFactory: DataSource.Factory = object : Factory
+		{
+			override fun createDataSource(): DataSource
+			{
+				return AssetDataSource(this@VideoPlayerActivity)
+			}
+		}
+
+		val videoSource = ExtractorMediaSource(Uri.parse("assets:///onboarding_video.mp4"), dataSourceFactory, DefaultExtractorsFactory(), null, null)
+
 		player.prepare(videoSource)
 		player.addListener(object: ExoPlayer.EventListener
 		{
@@ -59,9 +68,6 @@ class VideoPlayerActivity : AppCompatActivity()
 		})
 
 		player.playWhenReady = true
-		videoPlayer.requestFocus()
-		videoPlayer.useController = false
-		videoPlayer.player = player
 	}
 
 	override fun onDestroy()
