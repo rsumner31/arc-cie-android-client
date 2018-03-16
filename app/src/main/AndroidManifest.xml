@@ -21,4 +21,5 @@
 		<activity android:name=".onboarding.activity.OnboardingActivity" android:theme="@style/Theme.AppCompat.NoActionBar" />
 		<activity android:name=".onboarding.activity.VideoPlayerActivity" android:theme="@style/AppTheme.Fullscreen" android:screenOrientation="portrait" />
 	</application>
+		android:theme="@style/AppTheme" />
 </manifest>
