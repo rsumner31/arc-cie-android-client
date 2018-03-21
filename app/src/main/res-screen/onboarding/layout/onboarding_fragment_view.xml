@@ -3,7 +3,6 @@
 <android.support.constraint.ConstraintLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
-	android:id="@+id/root_view"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	android:background="#ffffff"
@@ -16,54 +15,97 @@
 		android:adjustViewBounds="true"
 	/>
 
-	<TextView
+	<ScrollView
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:id="@+id/title"
-		android:text="@string/onboarding_title"
-		app:layout_constraintTop_toBottomOf="@+id/header_image"
-		android:layout_marginTop="8dp"
-		android:layout_marginLeft="12dp"
-		android:layout_marginRight="12dp"
-		style="@style/Onboarding_Title"
+		app:layout_constraintBottom_toTopOf="@id/button_container"
+		app:layout_constraintStart_toEndOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		android:fillViewport="true"
+	>
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical"
+			android:id="@+id/content_view"
+			android:paddingLeft="12dp"
+			android:paddingRight="12dp"
+		>
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:id="@+id/title"
+				android:text="@string/onboarding_title"
+				android:layout_marginTop="8dp"
+				android:layout_marginStart="24dp"
+				android:layout_marginEnd="24dp"
+				style="@style/Onboarding_Title"
+			/>
+
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:id="@+id/body"
+				android:text="@string/onboarding_body"
+				android:layout_marginTop="8dp"
+				android:layout_marginBottom="24dp"
+				android:layout_marginStart="24dp"
+				android:layout_marginEnd="24dp"
+				style="@style/Onboarding_Body"
+			/>
+
+			<FrameLayout
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:id="@+id/video_thumb"
+				android:layout_gravity="center_horizontal"
+			>
+				<ImageView
+					android:layout_width="wrap_content"
+					android:layout_height="92dp"
+					android:src="@drawable/onboarding_video_thumb"
+					android:adjustViewBounds="true"
+					android:layout_gravity="center_horizontal|bottom"
+				/>
+			</FrameLayout>
+		</LinearLayout>
+	</ScrollView>
+
+	<View
+		android:layout_width="match_parent"
+		android:layout_height="1dp"
+		android:background="#cccccc"
+		app:layout_constraintTop_toTopOf="@id/button_container"
+		app:layout_constraintBottom_toTopOf="@id/button_container"
 	/>
 
-	<TextView
+	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:text="@string/onboarding_body"
-		app:layout_constraintTop_toBottomOf="@+id/title"
-		android:layout_marginTop="8dp"
-		android:layout_marginLeft="12dp"
-		android:layout_marginRight="12dp"
-		style="@style/Onboarding_Body"
-	/>
+		android:id="@+id/button_container"
+		android:orientation="horizontal"
+		android:padding="18dp"
+		android:background="#ffffff"
+		app:layout_constraintBottom_toBottomOf="parent"
+	>
+		<Button
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:id="@+id/skip"
+			android:text="@string/onboarding_skip_button"
+			android:layout_gravity="center_vertical"
+			style="@style/RedButton.Borderless"
+		/>
 
-	<Button
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:id="@+id/video"
-		android:text="@string/onboarding_video_button"
-		android:layout_marginLeft="12dp"
-		android:layout_marginRight="12dp"
-		android:layout_marginBottom="8dp"
-		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintBottom_toTopOf="@id/skip"
-		style="@style/RedButton"
-	/>
-
-	<Button
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:id="@+id/skip"
-		android:text="@string/onboarding_skip_button"
-		android:layout_marginLeft="12dp"
-		android:layout_marginRight="12dp"
-		android:layout_marginBottom="12dp"
-		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintBottom_toBottomOf="@id/root_view"
-		style="@style/RedButton.Borderless"
-	/>
+		<Button
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:id="@+id/video"
+			android:text="@string/onboarding_video_button"
+			android:layout_gravity="center_vertical|bottom"
+			android:drawableStart="@drawable/ic_play_small"
+			android:drawablePadding="12dp"
+			style="@style/RedButton"
+		/>
+	</LinearLayout>
 </android.support.constraint.ConstraintLayout>

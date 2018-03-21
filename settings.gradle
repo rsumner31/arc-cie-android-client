@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-include ':app', ':sdk:sdk'
-=======
-include ':app'
->>>>>>> b6fffd3... Initial project structure
+include ':app', ':sdk:dmsdk'
